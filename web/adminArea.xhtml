@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <h:head>
+        <title>Admin area</title>
+    </h:head>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+    </style>
+    <h:body>
+        <p:layout fullPage="true">
+
+            <!-- Header  -->
+            <p:layoutUnit position="north" size="220" resizable="false" collapsible="false" >
+                <h:graphicImage style="float: right" url="Resources\banner.jpg" width="98%"  height="98%"/>
+            </p:layoutUnit>
+
+            <!-- East panel  -->
+            <p:layoutUnit position="east" ></p:layoutUnit>
+
+            <!-- Center panel  -->
+            <p:layoutUnit position="center" header="Available books">
+                <h:form id="form">
+                    
+                    <!-- START It Books carousel  -->
+                    <p:carousel id="carti1" headerText="IT Books" value="#{dataScrollerView.itBooks}"  itemStyleClass="fullWidthClass" circular="true"  numVisible="7" var="book" itemStyle="text-align:center">
+                        <p:panelGrid columns="2" style="width:100%;margin:10px 0px">
+
+                            <!-- Image Preview  (loaded from WebPages/Resources/ folder)  -->
+                            <f:facet name="header">
+                                <p:commandLink update=":dialogForm:bookDetail" onclick="PF('bookDialog').show()" title="View Detail">
+                                    <p:graphicImage id="image1" url="Resources\book.png"  height="127" width="150"/> 
+                                    <!-- On click set selected book -->
+                                    <f:setPropertyActionListener value="#{book}" target="#{dataScrollerView.selectedBook}" />
+                                </p:commandLink>
+                            </f:facet>
+
+                            <!-- Title label and value -->
+                            <h:outputText value="Titlu:" />
+                            <h:outputText id="title1" value="#{book.title}" escape="false" />
+
+                            <!-- Author label and value -->
+                            <h:outputText value="Author: " />
+                            <h:outputText value="#{book.author}" escape="false"/>
+
+                            <!-- Publisher label and value -->
+                            <h:outputText value="Publisher: " />
+                            <h:outputText value="#{book.publisher}" escape="false"/>
+
+                            <!-- Owner label and value -->
+                            <h:outputText value="Owned by:" />
+                            <h:outputText value="#{book.owner}" style="color: #{book.color}" />
+                        </p:panelGrid>
+
+                        <!-- Counter label and value -->
+                        <f:facet name="footer">
+                            In total there are #{fn:length(dataScrollerView.itBooks)} books.
+                        </f:facet>
+                    </p:carousel>
+                    <!-- END It Books Carousel -->
+
+                    <!-- START Sport Books carousel  -->
+                    <p:carousel id="carti2" headerText="Sports Books" value="#{dataScrollerView.sportBooks}" itemStyleClass="fullWidthClass" circular="true"  numVisible="7" var="book" itemStyle="text-align:center">
+                        <p:panelGrid columns="2"  style="width:100%;margin:10px 0px">
+
+                            <!-- Image Preview (loaded from WebPages/Resources/ folder)   -->
+                            <f:facet name="header">
+                                <p:commandLink update=":dialogForm:bookDetail" onclick="PF('bookDialog').show()" title="View Detail">
+                                    <p:graphicImage id="image1" url="Resources\book.png" height="127" width="150"/> 
+                                    <!-- On click set selected book -->
+                                    <f:setPropertyActionListener value="#{book}" target="#{dataScrollerView.selectedBook}" />
+                                </p:commandLink>
+                            </f:facet>
+
+                            <!-- Title label and value -->
+                            <h:outputText value="Titlu:" />
+                            <h:outputText id="title2" value="#{book.title}" escape="false"/>
+
+                            <!-- Author label and value -->
+                            <h:outputText value="Author: " />
+                            <h:outputText value="#{book.author}" escape="false"/>
+
+                            <!-- Publisher label and value -->
+                            <h:outputText value="Publisher: " />
+                            <h:outputText value="#{book.publisher}" escape="false"/>
+
+                            <!-- Owner label and value -->
+                            <h:outputText value="Owned by:" />
+                            <h:outputText value="#{book.owner}" style="color: #{book.color}" />
+                        </p:panelGrid>
+
+                        <!-- Counter label and value -->
+                        <f:facet name="footer">
+                            In total there are #{fn:length(dataScrollerView.sportBooks)} books.
+                        </f:facet>
+                    </p:carousel>
+                    <!-- END Sport Books Carousel -->
+
+                    <!-- START Other Books carousel  -->
+                    <p:carousel id="carti3" headerText="Other" value="#{dataScrollerView.otherBooks}" itemStyleClass="fullWidthClass" circular="true"  numVisible="7" var="book" itemStyle="text-align:center">
+                        <p:panelGrid columns="2"  style="width:100%;margin:10px 0px">
+
+                            <!-- Image Preview (loaded from WebPages/Resources/ folder)   -->
+                            <f:facet name="header">
+                                <p:commandLink update=":dialogForm:bookDetail" onclick="PF('bookDialog').show()" title="View Detail">
+                                    <p:graphicImage id="image1" url="Resources\book.png" height="127" width="150"/> 
+                                    <!-- On click set selected book -->
+                                    <f:setPropertyActionListener value="#{book}" target="#{dataScrollerView.selectedBook}" />
+                                </p:commandLink>
+                            </f:facet>
+
+                            <!-- Title label and value -->
+                            <h:outputText value="Titlu:" />
+                            <h:outputText id="title3" value="#{book.title}" escape="false"/>
+
+                            <!-- Author label and value -->
+                            <h:outputText value="Author: " />
+                            <h:outputText value="#{book.author}" escape="false"/>
+
+                            <!-- Publisher label and value -->
+                            <h:outputText value="Publisher: " />
+                            <h:outputText value="#{book.publisher}" escape="false"/>
+
+                            <!-- Owner label and value -->
+                            <h:outputText value="Owned by:" />
+                            <h:outputText value="#{book.owner}" style="color: #{book.color}" />
+                        </p:panelGrid>
+
+                        <!-- Counter label and value -->
+                        <f:facet name="footer">
+                            In total there are #{fn:length(dataScrollerView.otherBooks)} books.
+                        </f:facet>
+                    </p:carousel>
+                    <!-- END Other Books Carousel -->
+                </h:form>    
+
+                <!-- START Selected Book details dialog  -->
+                <p:dialog header="Book Details" closeOnEscape="true" minimizable="true" maximizable="true" widgetVar="bookDialog" showEffect="fade" hideEffect="fade" resizable="false">
+                    <h:form id="dialogForm">
+                        <p:outputPanel id="bookDetail" style="text-align:center;">
+                            <p:panelGrid  columns="2" rendered="#{not empty dataScrollerView.selectedBook}" columnClasses="label,value">
+                                
+                                <h:inputHidden value="Not used" />
+                                <!-- File upload component  -->
+                                <h:form enctype="multipart/form-data">
+                                    <p:fileUpload value="#{dataScrollerView.selectedBook.filePath}"  mode="advanced" auto="true" dragDropSupport="true" fileUploadListener="#{dataScrollerView.handleFileUpload}"/>
+                                </h:form>
+
+                                <!-- Title label and value -->
+                                <h:outputText value="Title:" />
+                                <h:inputText id="title3" value="#{dataScrollerView.selectedBook.title}"/>
+
+                                <!-- Author label and value -->
+                                <h:outputText value="Author: " />
+                                <h:inputText value="#{dataScrollerView.selectedBook.author}"/>
+
+                                <!-- Publisher label and value -->
+                                <h:outputText value="Publisher: " />
+                                <h:inputText value="#{dataScrollerView.selectedBook.publisher}"/>
+
+                                <!-- Owner label and value -->
+                                <h:outputText value="Category: " />
+                                <h:inputText value="#{dataScrollerView.selectedBook.category}"/>
+
+                                <!-- Save changes button -->
+                                <p:commandButton value="Save" action="#{dataScrollerView.saveAndClose}" 
+                                                 oncomplete="PF('bookDialog').hide()"/>
+                                
+                                <!-- Delete selected book button -->
+                                <p:commandButton value="Delete Book" action="#{dataScrollerView.deleteAndClose}" 
+                                                 oncomplete="PF('bookDialog').hide()"/>
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </h:form>
+                </p:dialog>  
+                <!-- END Selected Book details dialog  -->
+            </p:layoutUnit>
+
+            <!-- West panel -->
+            <p:layoutUnit position="west" ></p:layoutUnit>
+
+            <!-- South panel -->
+            <p:layoutUnit position="south" size="11%">
+
+                <!-- Copyright -->
+                <div style="text-align: center">
+                    <h4>Copyright protected. Created and designed by Cojocaru Cristian</h4>
+                </div>
+
+                <!-- Stack menu items and actions (bottom-right component) -->
+                <p:stack icon="Resources\stack.png" expanded="true">
+                    <!-- Logout  -->
+                    <p:menuitem>
+                        <p:commandLink action="#{dataScrollerView.logOut()}">
+                            <p:graphicImage id="logOut" url="Resources\logout.png"/>
+                            <p:tooltip id="toolTipTrack5" for="logOut" value="Log Out" showEffect="clip" hideEffect="explode"/>
+                        </p:commandLink>
+                    </p:menuitem>
+                    <!-- Home  -->
+                    <p:menuitem>
+                        <p:commandLink action="#{dataScrollerView.logOut()}">
+                            <p:graphicImage id="home" url="Resources\home.png"/>
+                            <p:tooltip id="toolTipTrack4" for="home" value="Home Page" showEffect="clip" hideEffect="explode"/>
+                        </p:commandLink>
+                    </p:menuitem>
+                    <!-- Add User  -->
+                    <p:menuitem>
+                        <p:commandLink update=":userForm:userDialog" onclick="PF('userDialog').show()">
+                            <p:graphicImage id="addUser" url="Resources\addUser.png"/>
+                            <p:tooltip id="toolTipTrack3" for="addUser" value="User Management" showEffect="clip" hideEffect="explode"/>
+                        </p:commandLink>
+                    </p:menuitem>
+                    <!-- Add Book  -->
+                    <p:menuitem>
+                        <p:commandLink update=":dialogForm:bookDetail" onclick="PF('bookDialog').show()">
+                            <p:graphicImage id="addBook" url="Resources\addBook.png"/>
+                            <p:tooltip id="toolTipTrack1" for="addBook" value="Add book" showEffect="clip" hideEffect="explode"/>
+                        </p:commandLink>
+                    </p:menuitem>
+                    <!-- Logged user  -->
+                    <p:menuitem value="#{loginView.curentUser}" icon="Resources\user.png" url="#"/>
+                </p:stack>
+                <!-- END of Stack component -->
+
+                <!-- START User Management dialog -->
+                <p:dialog header="User Management" closeOnEscape="true" minimizable="true" maximizable="true" widgetVar="userDialog" showEffect="fade" hideEffect="fade" resizable="false">
+                    <h:form id="userForm">
+                        <p:outputPanel id="userDialog" style="text-align:center;">
+                            <p:panelGrid  columns="2" columnClasses="label,value">
+
+                                <!-- User Name Label and Value -->
+                                <h:outputText value="User Name: " />
+                                <h:inputText id="title3" value="#{loginView.userName}"/>
+
+                                <!-- Password Label and Value -->
+                                <h:outputText value="Password: " />
+                                <p:password value="#{loginView.password}"/>
+
+                                <!-- Admin Label and Value -->
+                                <h:outputText value="Admin: " />
+                                <p:selectBooleanCheckbox id="admin1" value="#{loginView.admin}" />
+
+                                <!-- Save/Update/Delete user button -->
+                                <p:splitButton value="Save" actionListener="#{loginView.createFromAdmin()}" ajax="false" icon="ui-icon-disk">
+                                    <p:menuitem value="Update" actionListener="#{loginView.createFromAdmin()}" ajax="false" icon="ui-icon-arrowrefresh-1-w" />
+                                    <p:menuitem value="Delete" actionListener="#{loginView.delete()}" ajax="false" icon="ui-icon-close" />
+                                </p:splitButton>
+
+                                <!-- Drop down selection with all users -->
+                                <p:selectOneMenu id="users" value="#{loginView.selectedUser}" style="width:150px">
+                                    <f:selectItem itemLabel="Users" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{loginView.allUsersList}" />
+                                </p:selectOneMenu>
+
+                            </p:panelGrid>
+                        </p:outputPanel>
+                    </h:form>
+                </p:dialog>
+                <!-- END User Management dialog -->
+                
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

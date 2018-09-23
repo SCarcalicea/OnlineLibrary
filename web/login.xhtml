@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Online Library LogIn</title>
+    </h:head>
+    <style type="text/css"> 
+        #mydiv {
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            width:30em;
+            height:18em;
+            margin-top: -9em; /*set to a negative number 1/2 of your height*/
+            margin-left: -15em; /*set to a negative number 1/2 of your width*/
+            border-style: outset;
+        }
+    </style>
+    <h:body>
+        <p:layout fullPage="true">
+
+            <!-- Header  -->
+            <p:layoutUnit position="north" size="220" resizable="false" collapsible="false" >
+                <h:graphicImage style="float: right" url="Resources\banner.jpg" width="98%"  height="98%"/>
+            </p:layoutUnit>
+            
+            <!-- East panel  -->
+            <p:layoutUnit position="east" ></p:layoutUnit>
+
+            <!-- Center panel  -->
+            <p:layoutUnit position="center" style="background-color: lightgray">
+                <div id="mydiv">
+                    <h:form>
+                        <p:panel id="panel" header="Log In Or Create User">
+                            <!-- Error area component -->
+                            <p:messages id="msgs" />
+
+                            <h:panelGrid columns="3" cellpadding="2">
+                                
+                                <!-- User name component, validation and error messaging display -->
+                                <p:outputLabel for="username" value="User Name:" />
+                                <p:inputText id="username" value="#{loginView.userName}" required="true" label="Firstname">
+                                    <f:validateLength minimum="5" />
+                                </p:inputText>
+                                <p:message for="username" display="icon" />
+
+                                <!-- Password component, validation and error messaging display -->
+                                <p:outputLabel for="Password" value="Password:" />
+                                <p:password id="Password" value="#{loginView.password}" label="Password" required="true">
+                                    <f:validateLength minimum="5" />
+                                    <p:ajax update="msgLastname" event="keyup" />
+                                </p:password>
+                                <p:message for="Password" id="msgLastname" display="icon" />
+
+                            </h:panelGrid>
+
+                            <!-- Log in button -->
+                            <p:commandButton value="Log In" ajax="false" validateClient="true" update="panel" actionListener="#{loginView.check}" icon="ui-icon-check" />
+                            <p:spacer width ="40"></p:spacer>
+                            
+                            <!-- Create button -->
+                            <p:commandButton value="Create"  ajax="false" validateClient="true"  update="panel" actionListener="#{loginView.create}" icon="ui-icon-check" />
+                            <p:spacer width ="40"></p:spacer>
+                            
+                            <!-- Admin check box -->
+                            <h:outputText value="Admin: " />
+                            <p:selectBooleanCheckbox id="admin1" value="#{loginView.admin}" />
+                            
+                            <!-- Tooltip for admin check box -->
+                            <p:tooltip id="toolTipFade1" for="admin1" value="Administrator rights" />
+                        </p:panel>
+                    </h:form>
+                </div>
+            </p:layoutUnit>
+            
+            <!-- West panel -->
+            <p:layoutUnit position="west" ></p:layoutUnit>
+            
+            <!-- South panel -->
+            <p:layoutUnit position="south" size="9%">
+
+                <!-- Copyright -->
+                <div style="text-align: center">
+                    <h4>Copyright protected. Created and designed by Cojocaru Cristian</h4>
+                </div>
+                
+                <!-- Connection to data base is done using a pooling mechanism -->
+                <h:form id="poolingForm">
+                    <p:poll interval="1" listener="#{loginView.connect()}" />
+                </h:form>
+
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

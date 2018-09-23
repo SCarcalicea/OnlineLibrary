@@ -1,0 +1,12 @@
+1. Admin area first click is on Add Book is showing empty dialog
+    -> fixed by initializing selectedBook from DataScrollerView.java
+
+2. From Admin area, add user, check box should be unchecked by default
+
+3. Limit the user so he can only upload image files
+    -> fixed by adding an extension checker
+
+4. Image resizing for image file upload is not implemented yet
+
+Tema:
+Realizarea aplicatiilor web utilizand limbajul java
